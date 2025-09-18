@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      {/* Navigation */}
+      <nav style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
+        <Link to="/" style={{ marginRight: "1rem" }}>Home</Link>
+        <Link to="/reviews" style={{ marginRight: "1rem" }}>Reviews</Link>
+        <Link to="/concerts" style={{ marginRight: "1rem" }}>Concerts</Link>
+        <Link to="/blog" style={{ marginRight: "1rem" }}>Blog</Link>
+        <Link to="/playlists">Playlists</Link>
+      </nav>
+
+      {/* Page Routes */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/concerts" element={<Concerts />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/playlists" element={<Playlists />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+// Pages
+function Home() {
+  return <h1>🎶 Home – All Posts (Reviews, Concerts, Blog, Playlists)</h1>;
+}
+
+function Reviews() {
+  return <h1>⭐ Reviews</h1>;
+}
+
+function Concerts() {
+  return <h1>🎤 Concerts</h1>;
+}
+
+function Blog() {
+  return <h1>📝 Blog</h1>;
+}
+
+function Playlists() {
+  return <h1>📀 Playlists</h1>;
+}
+
+export default App;
